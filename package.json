@@ -1,0 +1,22 @@
+{
+  "type": "module",
+  "private": true,
+  "workspaces": [
+    "server",
+    "client",
+    "e2e"
+  ],
+  "scripts": {
+    "build:client": "yarn workspace sweeper-scout-client build",
+    "dev": "yarn workspace sweeper-scout-server dev",
+    "dev:debug": "yarn workspace sweeper-scout-server dev:debug",
+    "heroku-postbuild": "yarn workspace sweeper-scout-client build",
+    "start": "yarn workspace sweeper-scout-server start",
+    "dev:cypress": "yarn workspace sweeper-scout-server dev:e2e",
+    "e2e:open": "yarn workspace sweeper-scout-e2e e2e:open",
+    "e2e:run": "yarn workspace sweeper-scout-e2e e2e:run"
+  },
+  "engines": {
+    "node": "^14.19"
+  }
+}

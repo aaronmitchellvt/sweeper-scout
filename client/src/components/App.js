@@ -7,7 +7,7 @@ import "../assets/scss/main.scss";
 import RegistrationForm from "./registration/RegistrationForm";
 import SignInForm from "./authentication/SignInForm";
 import TopBar from "./layout/TopBar";
-import SweepInfo from "./SweepInfo.js";
+import SweepInfo from "./SweepInfo";
 
 const App = (props) => {
   const [currentUser, setCurrentUser] = useState(undefined);
@@ -29,10 +29,11 @@ const App = (props) => {
       <TopBar user={currentUser} />
       <Switch>
         <Route exact path="/">
-          <h2>Hello</h2>
-          {/* <SweepInfo /> */}
+          {/* <h1>Hello</h1> */}
+          <SweepInfo />
         </Route>
         <Route exact path="/users/new" component={RegistrationForm} />
+        {/* <Route exact path="/data" component={SweepInfo} /> */}
         <Route exact path="/user-sessions/new" component={SignInForm} />
       </Switch>
     </Router>

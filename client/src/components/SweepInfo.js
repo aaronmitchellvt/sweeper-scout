@@ -1,39 +1,90 @@
-// import React, { useState, useEffect } from "react";
-// const puppeteer = require("puppeteer");
-// const cheerio = require("cheerio");
-// const fs = require("fs");
+import React, { useState, useEffect } from "react";
 
-// const SweepInfo = (props) => {
+const SweepInfo = (props) => {
+  const [myHtml, setHtml] = useState([]);
 
-//   async function getData() {
-//     const browser = await puppeteer.launch();
-//     const page = await browser.newPage();
-//     await page.goto("https://www.cityofboston.gov/publicworks/sweeping/");
-//     const data = await page.content();
-//     await browser.close();  
-//     processData(data);
-//   }
+  const parseData = (htmlData) => {
+    const doc = new DOMParser().parseFromString(htmlData, "text/html");
+    console.log("doc", doc);
+    const trDomElements = doc.getElementsByTagName("tr");
+    const trElements = [...trDomElements];
 
-//   useEffect(() => {
-//     getData();
-//   }, []);
-// };
-// export default SweepInfo;
+    const infoObjArray = trElements
+      .filter((trElt, cntTr) => cntTr > 0)
+      .map((trElt, cntTr) => {
+        const tdDomElements = trElt.getElementsByTagName("td");
+        const tdElements = [...tdDomElements];
 
-// // const [myHtml, setHtml] = useState("webpage html");
-// // const url = "github.com/trending?since=weekly";
+        let infoObj = {};
 
+        tdElements.forEach((tdElt, cntTd) => {
+          if (cntTd === 2) {
+            const evenOrOdd = tdElt.textContent;
+            infoObj.evenOrOdd = evenOrOdd;
+          } else if (cntTd === 4) {
+            const info = tdElt;
+            const tdDomChildren = tdElt.childNodes;
+            const tdChildren = [...tdDomChildren];
 
-// // const fetchHtml = async () => {
-// //   const apiResponse = await got(url);
-// //   const responseBody = apiResponse.body;
+            const timeRangeNode = tdChildren[2];
+            const timeRange = timeRangeNode.textContent; 
+            infoObj.timeRange = timeRange;
 
-// //   const $ = cheerio.load(responseBody);
-// //   const $body = $("body");
-// //   const $repos = $body.find(".Box-row");
-// //   setHtml($repos)
-// //   console.log(myHtml);
-// // };
+            const aElt = tdChildren[5];
+            const aDomAtts = aElt.attributes;
+            const aAtts = { ...aDomAtts };
+            const hrefAtt = aAtts[1];
+            const hrefValue = hrefAtt.textContent;
+            const hrefValueArray = hrefValue.split("=");
+            const dateString = hrefValueArray[2]; 
+            infoObj.date = dateString;
+          }
+        }); 
+        return infoObj;
+      }); // end of trElement loop
+    return infoObjArray;
+  };
+
+  const getData = async () => {
+    const response = await fetch(`/api/v1/data`);
+    const responseBody = await response.json();
+    console.log(responseBody);
+    const preHtmlData = responseBody.html;
+    const htmlData = `<table>${preHtmlData}</table>`;
+    const parsedData = parseData(htmlData);
+
+    console.log("Parsed data: ", parsedData);
+    setHtml(parsedData);
+  };
+
+  useEffect(() => {
+    getData();
+  }, []);
+
+  const printDataFunction = () => { //myHtml is an array of parsedData
+
+    myHtml.forEach((object) => {
+      // console.log("Object - ", object)
+      for(const key in object) {
+        console.log(`${key}: ${object[key]}`)
+      }
+    })
+  }
+
+  printDataFunction()
+
+  return(
+    <div>
+      <h1>Street sweeping info</h1>
+      <ul>
+        {myHtml.map(item => {
+          return <li>Date: {item.date}, Even or Odd: {item.evenOrOdd} Time Range: {item.timeRange}</li>;
+        })}
+      </ul>
+    </div>
+  );
+};
+export default SweepInfo;
 
 //   // const fetchHtml = () => {
 //   //   const url = 'https://pbleagues.com/'
@@ -45,3 +96,14 @@
 //   //     }
 //   //   })
 //   // }
+
+
+    //   const parser = new DOMParser();
+    //   const htmlObj = parser.parseFromString(htmlData, "text/html")
+    //  const tdElements = {} //htmlObj.get("td")
+    //  Object.values(tdElements).forEach(value => {
+    //   //  const value = tdElements[key]
+    //    //const text = value.text
+    //    console.log("td element", value)
+    //  })
+    //   console.log("html obj",  htmlObj)

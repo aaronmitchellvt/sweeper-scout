@@ -7,7 +7,7 @@ const usersRouter = new express.Router();
 usersRouter.post("/", async (req, res) => {
   let { email, password, address, passwordConfirmation } = req.body;
   console.log("req body: ", req.body)
-  // address = ""
+
   try {
     const persistedUser = await User.query().insertAndFetch({ email, address, password });
     console.log("Persisted User: ", persistedUser)

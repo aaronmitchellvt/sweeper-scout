@@ -5,6 +5,7 @@ const SweepInfo = (props) => {
   const [myHtml, setHtml] = useState([]);
 
   const parseData = (htmlData) => {
+    //comment SECOND TRY!
     const doc = new DOMParser().parseFromString(htmlData, "text/html");
     console.log("doc", doc);
     const trDomElements = doc.getElementsByTagName("tr");

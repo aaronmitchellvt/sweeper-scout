@@ -5,7 +5,6 @@ const SweepInfo = (props) => {
   const [myHtml, setHtml] = useState([]);
 
   const parseData = (htmlData) => {
-    //comment SECOND TRY!
     const doc = new DOMParser().parseFromString(htmlData, "text/html");
     console.log("doc", doc);
     const trDomElements = doc.getElementsByTagName("tr");
@@ -79,7 +78,7 @@ const SweepInfo = (props) => {
 
   return(
     <div>
-      <Button lg warning onClick={() => console.log("clicked")}>Show Toast</Button> 
+      {/* <Button lg warning onClick={() => console.log("clicked")}>Show Toast</Button>  */}
       <h1>Street sweeping info</h1>
       <ul>
         {myHtml.map(item => {

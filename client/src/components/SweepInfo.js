@@ -78,6 +78,7 @@ const SweepInfo = (props) => {
 
   return(
     <div>
+      {/* <Button primary>Primary</Button> */}
       <Button lg warning onClick={() => console.log("clicked")}>Show Toast</Button> 
       <h1>Street sweeping info</h1>
       <ul>

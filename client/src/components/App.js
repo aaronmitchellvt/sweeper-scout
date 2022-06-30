@@ -8,6 +8,8 @@ import RegistrationForm from "./registration/RegistrationForm";
 import SignInForm from "./authentication/SignInForm";
 import TopBar from "./layout/TopBar";
 import SweepInfo from "./SweepInfo";
+// import 'bootstrap/dist/css/bootstrap.min.css';
+
 
 const App = (props) => {
   const [currentUser, setCurrentUser] = useState(undefined);

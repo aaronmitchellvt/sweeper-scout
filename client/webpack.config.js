@@ -45,40 +45,79 @@ module.exports = {
         loader: "file-loader",
       },
       {
-        test: /\.module\.s(a|c)ss$/,
+        test: /\.(sa|sc|c)ss$/,
         use: [
-          isDevelopment ? "style-loader" : MiniCssExtractPlugin.loader,
-          {
-            loader: "css-loader",
-            options: {
-              modules: true,
-              sourceMap: isDevelopment,
-              esModule: true,
-              hmr: isDevelopment,
-            },
-          },
-          {
-            loader: "sass-loader",
-            options: {
-              sourceMap: isDevelopment,
-            },
-          },
-        ],
+                {
+                    loader: 'style-loader',
+                },
+                {
+                    loader: 'css-loader',
+               },
+               {
+                   loader: 'postcss-loader',
+                },
+                'sass-loader'
+            ],
       },
-      {
-        test: /\.s(a|c)ss$/,
-        exclude: /\.module.(s(a|c)ss)$/,
-        use: [
-          isDevelopment ? "style-loader" : MiniCssExtractPlugin.loader,
-          "css-loader",
-          {
-            loader: "sass-loader",
-            options: {
-              sourceMap: isDevelopment,
-            },
-          },
-        ],
-      },
+      // {
+      //   test: /\.(s(a|c)ss)$/,
+      //   use: ['style-loader','css-loader', 'sass-loader']
+      // },
+      // {
+      //   test: /\.s[ac]ss$/i,
+      //   use: [
+      //     // Creates `style` nodes from JS strings
+      //     "style-loader",
+      //     // Translates CSS into CommonJS
+      //     "css-loader",
+      //     // Compiles Sass to CSS
+      //     "sass-loader",
+      //   ],
+      // },
+      // {
+      //   test: /\.css$/i,
+      //   use: ["style-loader", "postcss-loader"],
+      // },
+      // {
+      //   test: /\.css$/,
+      //   // loader: 'style-loader!css-loader'
+      //   loaders: [{ test: /\.css$/, loader: 'style-loader!css-loader' }]
+      // },
+      // {
+      //   test: /\.module\.s(a|c)ss$/,
+      //   use: [
+      //     isDevelopment ? "style-loader" : MiniCssExtractPlugin.loader,
+      //     {
+      //       loader: "css-loader",
+      //       options: {
+      //         modules: true,
+      //         sourceMap: isDevelopment,
+      //         esModule: true,
+      //         hmr: isDevelopment,
+      //       },
+      //     },
+      //     {
+      //       loader: "sass-loader",
+      //       options: {
+      //         sourceMap: isDevelopment,
+      //       },
+      //     },
+      //   ],
+      // },
+      // {
+      //   test: /\.s(a|c)ss$/,
+      //   exclude: /\.module.(s(a|c)ss)$/,
+      //   use: [
+      //     isDevelopment ? "style-loader" : MiniCssExtractPlugin.loader,
+      //     "css-loader",
+      //     {
+      //       loader: "sass-loader",
+      //       options: {
+      //         sourceMap: isDevelopment,
+      //       },
+      //     },
+      //   ],
+      // },
     ],
   },
   resolve: {

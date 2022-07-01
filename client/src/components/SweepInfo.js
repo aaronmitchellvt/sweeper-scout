@@ -1,5 +1,9 @@
 import React, { useState, useEffect } from "react";
-import {Button} from 'bootstrap-4-react';
+
+import 'bootstrap/dist/css/bootstrap.min.css';
+
+// import {Button} from 'react-bootstrap';
+import { Button } from 'react-bootstrap';
 
 const SweepInfo = (props) => {
   const [myHtml, setHtml] = useState([]);
@@ -79,6 +83,8 @@ const SweepInfo = (props) => {
   return(
     <div>
       {/* <Button primary>Primary</Button> */}
+      <Button variant="primary">Primary</Button>{' '}
+
       <Button lg warning onClick={() => console.log("clicked")}>Show Toast</Button> 
       <h1>Street sweeping info</h1>
       <ul>

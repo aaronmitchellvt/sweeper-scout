@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-import 'bootstrap/dist/css/bootstrap.min.css';
-
-// import {Button} from 'react-bootstrap';
+// import 'bootstrap/dist/css/bootstrap.min.css';
 import { Button } from 'react-bootstrap';
 
 const SweepInfo = (props) => {

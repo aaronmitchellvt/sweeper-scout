@@ -43,23 +43,27 @@ dataRouter.get("/", async (req, res) => {
       console.log("Users district: ", userDistrict)
     }
     //convert the district to Neighborhood number
-    let neighborhoodNum;
-    for (const district in districtObj) {
-      if(district === userDistrict) {
-        neighborhoodNum = districtObj[district]
-      }
-    }
-    console.log("Neighborhood Num: ", neighborhoodNum)
+    // let neighborhoodNum;
+    // for (const district in districtObj) {
+    //   if(district === userDistrict) {
+    //     neighborhoodNum = districtObj[district]
+    //   }
+    // }
+    console.log("Neighborhood Num: ", userDistrict)
     //Uppercase and replace spaces with plus signs for street name
     const spaceReplacedSt = streetName.replace(" ","+")
     console.log("space replaced: ", spaceReplacedSt)
     const convertedStreet = spaceReplacedSt.toUpperCase()
     console.log("converted street: ", convertedStreet)
     //construct the url
-    const testUrl = `https://www.cityofboston.gov/publicworks/sweeping/?streetname=${convertedStreet}&Neighborhood=${neighborhoodNum}`
+    const testUrl = `https://www.cityofboston.gov/publicworks/sweeping/?streetname=${convertedStreet}&Neighborhood=${userDistrict}`
+    console.log("Test1: ",testUrl)
+    console.log("Test2: https://www.cityofboston.gov/publicworks/sweeping/?streetname=GREEN+ST&Neighborhood=2")
     console.log("User info from backend: ", req.user)
 
-    const url = "https://www.cityofboston.gov/publicworks/sweeping/?streetname=BENNETT+ST&Neighborhood=4";
+    // const url = "https://www.cityofboston.gov/publicworks/sweeping/?streetname=HILLSIDE+ST&Neighborhood=10M";
+    const diffUrl = "https://www.cityofboston.gov/publicworks/sweeping/?streetname=HILLSIDE+ST&Neighborhood=10M";
+
     const apiResponse = await got(testUrl);
 
     // console.log("api response: ", apiResponse)
@@ -70,7 +74,7 @@ dataRouter.get("/", async (req, res) => {
     const html = $("#tblsweeping").html().replace(/(?:\r\n|\r|\n|\t|&nbsp;)/g, '')
     //const html = $("td", "#tblsweeping")
     const htmlData = {html: html}// the entire <tbody>
-    // console.log("html data: ",htmlData)
+    console.log("html data: ",htmlData)
 
   return res.status(200).json(htmlData)
 })

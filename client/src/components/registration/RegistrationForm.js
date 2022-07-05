@@ -159,13 +159,37 @@ const RegistrationForm = () => {
             </Form.Text>
           </Form.Group>
 
-          <Form.Group className="mb-3" controlId="formBasicDistrict">
+          {/* <Form.Group className="mb-3" controlId="formBasicDistrict">
             <Form.Label>District</Form.Label>
             <Form.Control type="text" value={userPayload.district} placeholder="District" name="district" onChange={onInputChange} />
             <Form.Text className="text-muted">
               Your district. Ex. Roxbury
             </Form.Text>
-          </Form.Group>
+          </Form.Group> */}
+
+          <select name="district" className="form-select" aria-label="Default select example" onChange={onInputChange}>
+            <option selected>Choose your Zone</option>
+            <option value="1">Downtown</option>
+            <option value="1N">North End</option>
+            <option value="1C">Charlestown</option>
+            <option value="1S">South End</option>
+            <option value="1H">Beacon Hill</option>
+            <option value="1B">Back Bay</option>
+            <option value="1W">West End</option>
+            <option value="1T">Chinatown</option>
+            <option value="2">Jamaica Plain, Roslindale</option>
+            <option value="3">North Dorchester</option>
+            <option value="4">Allston, Brighton</option>
+            <option value="5">South Boston</option>
+            <option value="6">West Roxbury</option>
+            <option value="7">South Dorchester</option>
+            <option value="8">Hyde Park</option>
+            <option value="9">East Boston</option>
+            <option value="10">Roxbury</option>
+            <option value="10F">Fenway, Kenmore</option>
+            <option value="10M">Mission Hill</option>
+            <option value="99">Mass DCR</option>
+          </select>
 
           <Form.Group className="mb-3" controlId="formBasicPassword">
             <Form.Label>Password</Form.Label>

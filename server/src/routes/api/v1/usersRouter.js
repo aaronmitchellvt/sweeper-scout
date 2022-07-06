@@ -1,6 +1,6 @@
 import express from "express";
 import passport from "passport";
-import { User } from "../../../models/index.js";
+import User from "../../../models/User.js";
 
 const usersRouter = new express.Router();
 
@@ -19,5 +19,28 @@ usersRouter.post("/", async (req, res) => {
     return res.status(422).json({ errors: error });
   }
 });
+
+usersRouter.patch("/:id", async (req, res) => {
+  console.log("Hit the back end")
+  const userObjToEdit = await User.query().findById(req.params.id)
+
+  const userId = userObjToEdit.id
+  console.log("User id to edit: ", userId)
+  console.log("User to edit: ", userObjToEdit)
+
+  const userData = {
+    address: req.body.address,
+    district: req.body.district,
+    email: req.user.email
+  }
+
+  if (userId === req.user.id) {
+    console.log("successful id match")
+    const updatedUser = await userObjToEdit.$query().updateAndFetch(userData)
+    res.status(201).json({ updatedUser })
+  } else {
+    console.log("Error in backend with Patch")
+  }
+})
 
 export default usersRouter;

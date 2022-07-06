@@ -15,7 +15,7 @@ exports.up = async (knex) => {
     console.log(`Creating ${tableName}`);
     return knex.schema.createTable(tableName, (table) => {
       table.bigIncrements("id");
-      table.string("email").notNullable();
+      table.string("email")
       table.string("address").notNullable();
       table.string("district").notNullable();
       table.string("cryptedPassword").notNullable();

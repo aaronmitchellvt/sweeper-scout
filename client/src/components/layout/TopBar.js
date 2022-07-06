@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import SignOutButton from "../authentication/SignOutButton";
+import ProfileEditPage from "../ProfileEditPage";
 
 const TopBar = ({ user }) => {
   const unauthenticatedListItems = [
@@ -17,7 +18,7 @@ const TopBar = ({ user }) => {
   const authenticatedListItems = [
     <li key="sign-out">
       <SignOutButton />
-    </li>,
+    </li>
   ];
 
   return (
@@ -27,6 +28,9 @@ const TopBar = ({ user }) => {
           <li className="menu-text">App</li>
           <li>
             <Link to="/">Home</Link>
+          </li>
+          <li>
+            <Link to="/edit">Edit Profile</Link>
           </li>
         </ul>
       </div>

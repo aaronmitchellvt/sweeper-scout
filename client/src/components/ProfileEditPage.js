@@ -8,6 +8,7 @@ const ProfileEditPage = (props) => {
   const [shouldRedirect, setShouldRedirect] = useState(false);
   const [userPayload, setUserPayload] = useState({
     address: "",
+    phoneNum: "",
     district: ""
   });
 
@@ -78,14 +79,21 @@ const ProfileEditPage = (props) => {
           Edit your street address.
         </Form.Text>
       </Form.Group> */}
+      <Form.Group className="mb-3" controlId="formBasicPhoneNum">
+        <Form.Label>Phone Number</Form.Label>
+        <Form.Control type="text" value={userPayload.phoneNum} name="phoneNum" onChange={onInputChange} />
+        <Form.Text className="text-muted">
+          Your phone number for text notifications
+        </Form.Text>
+      </Form.Group>
 
       <Form.Group className="mb-3" controlId="formBasicAddress">
-            <Form.Label>Address</Form.Label>
-            <Form.Control type="text" value={userPayload.address} name="address" onChange={onInputChange} />
-            <Form.Text className="text-muted">
-              Your home address. Ex. 25 Bennett St
-            </Form.Text>
-          </Form.Group>
+        <Form.Label>Address</Form.Label>
+        <Form.Control type="text" value={userPayload.address} name="address" onChange={onInputChange} />
+        <Form.Text className="text-muted">
+          Your home address. Ex. 25 Bennett St
+        </Form.Text>
+      </Form.Group>
 
       <select name="district" className="form-select" aria-label="Default select example" onChange={onInputChange}>
             <option selected>Choose your Zone</option>

@@ -29,6 +29,7 @@ usersRouter.patch("/:id", async (req, res) => {
   console.log("User to edit: ", userObjToEdit)
 
   const userData = {
+    phoneNum: req.body.phoneNum,
     address: req.body.address,
     district: req.body.district,
     email: req.user.email

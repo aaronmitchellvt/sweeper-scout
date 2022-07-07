@@ -7,6 +7,7 @@ import Form from 'react-bootstrap/Form';
 const RegistrationForm = () => {
   const [userPayload, setUserPayload] = useState({
     email: "",
+    phoneNum: "",
     address: "",
     district: "",
     password: "",
@@ -148,6 +149,14 @@ const RegistrationForm = () => {
             <Form.Control type="email" value={userPayload.email}placeholder="Enter email" name ="email" onChange={onInputChange}/>
             <Form.Text className="text-muted">
               Use an email address you get notifications on.
+            </Form.Text>
+          </Form.Group>
+
+          <Form.Group className="mb-3" controlId="formBasicNumber">
+            <Form.Label>Phone Number</Form.Label>
+            <Form.Control type="text" value={userPayload.phoneNum}placeholder="Enter Phone Number" name ="phoneNum" onChange={onInputChange}/>
+            <Form.Text className="text-muted">
+              Get text message notifications.
             </Form.Text>
           </Form.Group>
 

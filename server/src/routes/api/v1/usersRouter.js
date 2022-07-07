@@ -5,11 +5,11 @@ import User from "../../../models/User.js";
 const usersRouter = new express.Router();
 
 usersRouter.post("/", async (req, res) => {
-  let { email, address, district, password, passwordConfirmation } = req.body;
+  let { email, phoneNum, address, district, password, passwordConfirmation } = req.body;
   console.log("req body: ", req.body)
 
   try {
-    const persistedUser = await User.query().insertAndFetch({ email, address, district, password });
+    const persistedUser = await User.query().insertAndFetch({ email, phoneNum, address, district, password });
     console.log("Persisted User: ", persistedUser)
     return req.login(persistedUser, () => {
       return res.status(201).json({ user: persistedUser });

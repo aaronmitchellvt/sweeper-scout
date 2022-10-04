@@ -48,6 +48,7 @@
     "webpack-hot-middleware": "^2.25.1"
   },
   "dependencies": {
+    "aws-sdk": "^2.1225.0",
     "bcrypt": "^5.0.1",
     "body-parser": "^1.20.0",
     "cookie-session": "^2.0.0",

@@ -31,10 +31,12 @@ const App = (props) => {
     <Router>
       <TopBar user={currentUser} />
       <Switch>
-        <Route exact path="/">
-          {/* <h1>Hello</h1> */}
-          <SweepInfo />
+
+
+        <Route exact path="/" >
+          <SweepInfo user={currentUser} />
         </Route>
+
         <Route exact path="/users/new" component={RegistrationForm} />
         {/* <Route exact path="/data" component={SweepInfo} /> */}
         <Route exact path="/user-sessions/new" component={SignInForm} />

@@ -61,7 +61,7 @@ const SweepInfo = (props) => {
   };
 
   useEffect(() => {
-    getData();
+    getData()
   }, []);
 
   const printDataFunction = () => { //myHtml is an array of parsedData
@@ -76,7 +76,19 @@ const SweepInfo = (props) => {
 
   printDataFunction()
 
+  // console.log(props.user.email)
+
   const [show, toggleShow] = useState(true);
+
+  const sendMessage = async () => {
+    const messageBody = {
+      phoneNum: "8325408313",
+      msgSubject: "Welcome from Sweeper Scout",
+      msgBody: "Thank you for registering for street sweeper!"
+    }
+    const response = fetch(`/api/v1/${messageBody.phoneNum}/${messageBody.msgSubject}/${messageBody.msgBody}`)
+    
+  }
 
   return(
     <div>
@@ -87,22 +99,11 @@ const SweepInfo = (props) => {
           return <li>Date: {item.date}, Even or Odd: {item.evenOrOdd} Time Range: {item.timeRange}</li>;
         })}
       </ul>
+      <Button> Click Me! </Button>
     </div>
   );
 };
 export default SweepInfo;
-
-//   // const fetchHtml = () => {
-//   //   const url = 'https://pbleagues.com/'
-//   //   request(url, (error, response, html) => {
-//   //     if(!error && response.statusCode == 200) {
-//   //       const $ = cheerio.load(html)
-//   //       setHtml($)
-//   //       console.log(myHtml)
-//   //     }
-//   //   })
-//   // }
-
 
     //   const parser = new DOMParser();
     //   const htmlObj = parser.parseFromString(htmlData, "text/html")

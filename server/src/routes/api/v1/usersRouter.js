@@ -5,7 +5,7 @@ import User from "../../../models/User.js";
 const usersRouter = new express.Router();
 
 usersRouter.post("/", async (req, res) => {
-  let { email, phoneNum, address, district, password, passwordConfirmation } = req.body;
+  let { email, phoneNum, address, district, password } = req.body;
   console.log("req body: ", req.body)
 
   try {

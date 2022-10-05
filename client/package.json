@@ -7,7 +7,7 @@
   },
   "license": "UNLICENSED",
   "private": true,
-  "name": "headcount-client",
+  "name": "sweeper-scout-client",
   "version": "0.0.1",
   "engines": {
     "node": "^14.19"

@@ -5,12 +5,6 @@ import AWS from "aws-sdk"; //npm install aws-sdk
 import dotenv from 'dotenv'
 dotenv.config() //npm install dotenv
 
-const PORT = "3000";
-AWS.config.update({
-  AWS_ACCESS_KEY_ID:"AKIATU5O2YPB4HGWVFT4",
-  AWS_SECRET_ACCESS_KEY:"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",
-  AWS_REGION:"us-east-1"
-})
 //function to generate random number
 function generateRandomNumber(min, max) {
   return Math.floor(Math.random() * (max - min) + min);

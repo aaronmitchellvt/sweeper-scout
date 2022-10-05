@@ -31,9 +31,7 @@ const SignOutButton = () => {
   }
 
   return (
-    <button type="button" className="button" onClick={signOut}>
-      Sign Out
-    </button>
+    <a className="py-2 px-2 bg-gray-800 text-white rounded shadow no-underline  " onClick={signOut}>Signout</a>
   );
 };
 
